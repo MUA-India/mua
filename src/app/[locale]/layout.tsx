@@ -63,13 +63,13 @@ export default async function RootLayout({
   return (
     <html lang={locale} className="light" suppressHydrationWarning>
       <head>
-        <link 
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" 
-          rel="stylesheet" 
+        <link
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+          rel="stylesheet"
         />
       </head>
       <body
-        className={`${sans.variable} ${display.variable} flex min-h-screen w-full flex-col antialiased font-sans text-black bg-white`}
+        className={`${sans.variable} ${display.variable} flex min-h-screen w-full flex-col antialiased font-sans bg-black text-white`}
       >
         <Providers messages={messages} locale={locale}>
           <Header />

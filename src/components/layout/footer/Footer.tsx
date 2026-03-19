@@ -39,7 +39,7 @@ export function Footer() {
             {t("rights")}
           </p>
           <div className="flex gap-6">
-             {/* Social placeholders could go here */}
+            {/* Social placeholders could go here */}
           </div>
         </div>
       </div>

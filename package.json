@@ -1,20 +1,20 @@
 {
-  "name": "@virastack/nextjs-boilerplate",
+  "name": "mua",
   "version": "1.0.0",
   "description": "Production-ready Next.js 16+ starter built with Tailwind CSS 4 and TypeScript.",
   "author": {
-    "name": "Ömer Gülçiçek (ViraStack)",
-    "email": "iletisim@omergulcicek.com",
-    "url": "https://omergulcicek.com"
+    "name": "Rishi Singh",
+    "email": "muastartup@gmail.com",
+    "url": "https://mua.co.in"
   },
   "license": "MIT",
-  "homepage": "https://virastack.com",
+  "homepage": "https://mua.co.in",
   "repository": {
     "type": "git",
-    "url": "https://github.com/virastack/nextjs-boilerplate.git"
+    "url": "https://github.com/MUA-India/mua.git"
   },
   "bugs": {
-    "url": "https://github.com/virastack/nextjs-boilerplate/issues"
+    "url": "https://github.com/MUA-India/mua/issues"
   },
   "engines": {
     "node": "22.x"

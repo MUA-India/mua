@@ -72,14 +72,14 @@
       "portal": "Pro Portal"
     },
     "Hero": {
-      "title": "Elegance <br> <span>Redefined.</span>",
+      "title": "Elegance <br/><span>Redefined.</span>",
       "description": "Discover and book world-class makeup artists for any occasion. From bridal to editorial, find the perfect hand for your unique style.",
       "primaryCta": "Explore Artists",
       "secondaryCta": "Our Portfolio"
     },
     "Vision": {
       "badge": "Our Vision",
-      "title": "Defining the <br> <span>MUA</span> Experience",
+      "title": "Defining the <br/><span>MUA</span> Experience",
       "description1": "MUA is a digital atelier where creative vision meets unparalleled skill. We curate elite talent to provide bespoke services tailored to your unique identity.",
       "description2": "For those who desire more than just a service – we offer true artistic collaboration to elevate your narrative.",
       "stats": {
