@@ -4,17 +4,17 @@ import { env } from "@/env";
 
 // FIXME: Update site branding, default locale, theme color, social links, languages and OG image
 export const siteConfig: SiteConfig = {
-  name: "ViraStack - Next.js Boilerplate",
-  description: "Production-ready Next.js 16+ starter built with Tailwind CSS 4 and TypeScript.",
+  name: "MUA",
+  description: "World-class makeup artistry platform. Connecting the global beauty world with artistry through a seamless, secure, and professional experience.",
   url: env.NEXT_PUBLIC_SITE_URL,
-  author: "Ömer Gülçiçek",
+  author: "MUA India",
   locale: DEFAULT_LOCALE,
-  themeColor: "#ffffff",
-  keywords: ["nextjs", "typescript", "tailwindcss", "boilerplate", "starter"],
+  themeColor: "#000000",
+  keywords: ["makeup", "mua", "beauty", "artistry", "booking", "salon"],
   social: {
-    twitter: "@omergulcicek",
-    github: "omergulcicek",
-    linkedin: "omergulcicek"
+    twitter: "@muaatelier",
+    github: "MUA-India",
+    linkedin: "mua-atelier"
   },
   ogImage: "/og.jpg",
   languages: {

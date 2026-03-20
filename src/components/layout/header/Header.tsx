@@ -1,49 +1,68 @@
 "use client";
 
 import Image from "next/image";
-import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { ThemeSwitcher } from "@/components/shared";
+import { Button } from "@/components/ui";
 
 export const Header = () => {
-  const t = useTranslations("Landing.Header");
-
-  const navLinks = [
-    { href: "#about", label: "vision" },
-    { href: "#how-it-works", label: "howItWorks" },
-    { href: "#services", label: "services" },
-    { href: "#why-choose", label: "whyMUA" },
-    { href: "#mua-portal", label: "portal" },
-  ];
-
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-white/5 bg-black/80 backdrop-blur-xl px-6 py-4 animate-fade-in-down">
-      <div className="max-w-[1200px] mx-auto flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-3 group">
-          <Image 
-            src="/mua-logo.png" 
-            alt="MUA" 
-            width={36} 
-            height={36} 
-            className="invert brightness-0 group-hover:scale-110 transition-transform"
-          />
-          <span className="text-white font-display font-black text-2xl tracking-tighter uppercase">
-            MUA<span className="text-primary">.</span>
-          </span>
-        </Link>
-        <nav className="hidden lg:flex items-center gap-10 text-white/50 text-xs font-bold uppercase tracking-[0.2em]">
-          {navLinks.map((link) => (
+    <header className="fixed top-0 z-50 w-full border-b border-white/5 bg-black/60 backdrop-blur-xl px-6 py-4 animate-fade-in-down">
+      <div className="max-w-[1400px] mx-auto flex items-center justify-between">
+        <div className="flex items-center gap-12">
+          <Link href="/" className="flex items-center gap-3 group">
+            <Image
+              src="/mua.png"
+              alt="MUA"
+              width={100}
+              height={36}
+              className="object-contain"
+            />
+          </Link>
+
+          <nav className="hidden lg:flex items-center gap-8">
             <Link
-              key={link.href}
-              href={link.href}
-              className="hover:text-primary transition-colors duration-300 relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
+              href="#atelier"
+              className="text-sm font-medium text-white/70 hover:text-primary transition-colors"
             >
-              {t(link.label)}
+              The Atelier
             </Link>
-          ))}
-        </nav>
+            <Link
+              href="#how-it-works"
+              className="text-sm font-medium text-white/70 hover:text-primary transition-colors"
+            >
+              How It Works
+            </Link>
+            <Link
+              href="#services"
+              className="text-sm font-medium text-white/70 hover:text-primary transition-colors"
+            >
+              Services
+            </Link>
+            <Link
+              href="#testimonials"
+              className="text-sm font-medium text-white/70 hover:text-primary transition-colors"
+            >
+              Testimonials
+            </Link>
+            <Link
+              href="#pro-section"
+              className="text-sm font-medium text-white/70 hover:text-primary transition-colors"
+            >
+              Pro Section
+            </Link>
+          </nav>
+        </div>
+
         <div className="flex items-center gap-4">
-          <ThemeSwitcher />
+          <Button
+            variant="outline"
+            className="hidden sm:flex border-primary text-primary hover:bg-primary hover:text-black font-semibold px-6"
+          >
+            Join MUA
+          </Button>
+          <Button className="bg-primary text-black hover:bg-primary/90 font-bold px-8">
+            Book Now
+          </Button>
         </div>
       </div>
     </header>
