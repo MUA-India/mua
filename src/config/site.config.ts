@@ -5,7 +5,8 @@ import { env } from "@/env";
 // FIXME: Update site branding, default locale, theme color, social links, languages and OG image
 export const siteConfig: SiteConfig = {
   name: "MUA",
-  description: "World-class makeup artistry platform. Connecting the global beauty world with artistry through a seamless, secure, and professional experience.",
+  description:
+    "World-class makeup artistry platform. Connecting the global beauty world with artistry through a seamless, secure, and professional experience.",
   url: env.NEXT_PUBLIC_SITE_URL,
   author: "MUA India",
   locale: DEFAULT_LOCALE,
