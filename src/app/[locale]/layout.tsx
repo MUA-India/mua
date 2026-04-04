@@ -61,7 +61,7 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className="dark" suppressHydrationWarning>
+    <html lang={locale} className="light" suppressHydrationWarning>
       <head>
         <link
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
@@ -69,7 +69,7 @@ export default async function RootLayout({
         />
       </head>
       <body
-        className={`${sans.variable} ${display.variable} flex min-h-screen w-full flex-col antialiased font-sans bg-black text-white`}
+        className={`${sans.variable} ${display.variable} flex min-h-screen w-full flex-col antialiased font-sans bg-background text-foreground`}
       >
         <Providers messages={messages} locale={locale}>
           <Header />

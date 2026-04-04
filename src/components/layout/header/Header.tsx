@@ -6,7 +6,7 @@ import { Button } from "@/components/ui";
 
 export const Header = () => {
   return (
-    <header className="fixed top-0 z-50 w-full border-b border-white/5 bg-black/60 backdrop-blur-xl px-6 py-4 animate-fade-in-down">
+    <header className="fixed top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur-xl px-6 py-4 animate-fade-in-down">
       <div className="max-w-[1400px] mx-auto flex items-center justify-between">
         <div className="flex items-center gap-12">
           <Link href="/" className="flex items-center gap-3 group">
@@ -15,38 +15,38 @@ export const Header = () => {
               alt="MUA"
               width={100}
               height={36}
-              className="object-contain"
+              className="object-contain invert"
             />
           </Link>
 
           <nav className="hidden lg:flex items-center gap-8">
             <Link
               href="#atelier"
-              className="text-sm font-medium text-white/70 hover:text-primary transition-colors"
+              className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors"
             >
               The Atelier
             </Link>
             <Link
               href="#how-it-works"
-              className="text-sm font-medium text-white/70 hover:text-primary transition-colors"
+              className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors"
             >
               How It Works
             </Link>
             <Link
               href="#services"
-              className="text-sm font-medium text-white/70 hover:text-primary transition-colors"
+              className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors"
             >
               Services
             </Link>
             <Link
               href="#testimonials"
-              className="text-sm font-medium text-white/70 hover:text-primary transition-colors"
+              className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors"
             >
               Testimonials
             </Link>
             <Link
               href="#pro-section"
-              className="text-sm font-medium text-white/70 hover:text-primary transition-colors"
+              className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors"
             >
               Pro Section
             </Link>
@@ -56,11 +56,11 @@ export const Header = () => {
         <div className="flex items-center gap-4">
           <Button
             variant="outline"
-            className="hidden sm:flex border-primary text-primary hover:bg-primary hover:text-black font-semibold px-6"
+            className="hidden sm:flex border-primary text-primary hover:bg-primary hover:text-white font-semibold px-6"
           >
             Join MUA
           </Button>
-          <Button className="bg-primary text-black hover:bg-primary/90 font-bold px-8">
+          <Button className="bg-primary text-white hover:bg-primary/90 font-bold px-8">
             Book Now
           </Button>
         </div>
