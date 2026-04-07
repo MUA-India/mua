@@ -2,6 +2,8 @@
 
 import { type AbstractIntlMessages } from "next-intl";
 
+import { SessionProvider } from "next-auth/react";
+
 import { IntlProvider, QueryProvider, ThemeProvider } from "@/providers";
 
 export function Providers({
@@ -14,10 +16,12 @@ export function Providers({
   locale?: string;
 }) {
   return (
-    <ThemeProvider>
-      <IntlProvider messages={messages} locale={locale}>
-        <QueryProvider>{children}</QueryProvider>
-      </IntlProvider>
-    </ThemeProvider>
+    <SessionProvider>
+      <ThemeProvider>
+        <IntlProvider messages={messages} locale={locale}>
+          <QueryProvider>{children}</QueryProvider>
+        </IntlProvider>
+      </ThemeProvider>
+    </SessionProvider>
   );
 }

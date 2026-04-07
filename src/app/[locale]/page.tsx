@@ -25,6 +25,7 @@ import { cn } from "@/lib/utils";
 
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
+import Link from "next/link";
 import { Button } from "@/components/ui";
 
 export default function Home() {
@@ -65,18 +66,25 @@ export default function Home() {
             </p>
             <div className="animate-fade-in-up flex flex-col items-center justify-center gap-6 pt-8 [animation-delay:400ms] sm:flex-row">
               <Button
+                asChild
                 size="lg"
                 className="hover-lift rounded-none bg-[#000000] px-10 py-8 text-lg font-bold tracking-wider text-[#ffffff] uppercase hover:bg-[#000000]/90"
               >
-                Explore Artists
+                <Link href="/signup?role=USER">Find an Artist</Link>
               </Button>
               <Button
+                asChild
                 size="lg"
                 variant="outline"
                 className="hover-lift rounded-none border-[#000000]/20 px-10 py-8 text-lg font-bold tracking-wider text-[#000000] uppercase hover:bg-[#000000]/5"
               >
-                Our Portfolio
+                <Link href="/signup?role=ARTIST">Join as an Artist</Link>
               </Button>
+            </div>
+            <div className="animate-fade-in-up flex items-center justify-center gap-4 text-sm text-[#000000]/60 [animation-delay:600ms]">
+              <Link href="/login" className="hover:text-[#000000] underline underline-offset-4">
+                Already have an account? Login
+              </Link>
             </div>
           </div>
         </div>
