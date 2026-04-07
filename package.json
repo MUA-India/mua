@@ -21,7 +21,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "analyze": "cross-env ANALYZE=true next build --webpack && open .next/analyze/nodejs.html",
     "clean": "rimraf .next",
@@ -31,6 +31,7 @@
     "lint": "eslint . --ext js,ts,tsx --cache",
     "lint:fix": "eslint . --ext js,ts,tsx --fix --cache && prettier --write .",
     "lint:ci": "eslint . --ext js,ts,tsx --max-warnings=0 && prettier --check .",
+    "postinstall": "prisma generate",
     "prepare": "husky",
     "typecheck": "tsc --noEmit",
     "check-types": "tsc --noEmit",
