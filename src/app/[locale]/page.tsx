@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 import {
   Award,
@@ -25,7 +26,6 @@ import { cn } from "@/lib/utils";
 
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
-import Link from "next/link";
 import { Button } from "@/components/ui";
 
 export default function Home() {
@@ -82,7 +82,7 @@ export default function Home() {
               </Button>
             </div>
             <div className="animate-fade-in-up flex items-center justify-center gap-4 text-sm text-[#000000]/60 [animation-delay:600ms]">
-              <Link href="/login" className="hover:text-[#000000] underline underline-offset-4">
+              <Link href="/login" className="underline underline-offset-4 hover:text-[#000000]">
                 Already have an account? Login
               </Link>
             </div>

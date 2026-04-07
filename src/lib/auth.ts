@@ -3,29 +3,31 @@ import { compare } from "bcrypt";
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
-import { prisma } from "@/lib/prisma";
+
 import { env } from "@/env";
+
+import { prisma } from "@/lib/prisma";
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   session: {
-    strategy: "jwt",
+    strategy: "jwt"
   },
   pages: {
     signIn: "/login",
-    error: "/auth/error",
+    error: "/auth/error"
   },
   providers: [
     GoogleProvider({
       clientId: env.GOOGLE_CLIENT_ID,
-      clientSecret: env.GOOGLE_CLIENT_SECRET,
+      clientSecret: env.GOOGLE_CLIENT_SECRET
     }),
     CredentialsProvider({
       id: "email-password",
       name: "Email and Password",
       credentials: {
         email: { label: "Email", type: "email" },
-        password: { label: "Password", type: "password" },
+        password: { label: "Password", type: "password" }
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
@@ -33,7 +35,7 @@ export const authOptions: NextAuthOptions = {
         }
 
         const user = await prisma.user.findUnique({
-          where: { email: credentials.email },
+          where: { email: credentials.email }
         });
 
         if (!user || !user.password) {
@@ -50,16 +52,16 @@ export const authOptions: NextAuthOptions = {
           id: user.id,
           email: user.email,
           name: user.name,
-          image: user.image,
+          image: user.image
         };
-      },
+      }
     }),
     CredentialsProvider({
       id: "phone-otp",
       name: "Phone OTP",
       credentials: {
         phone: { label: "Phone", type: "text" },
-        otp: { label: "OTP", type: "text" },
+        otp: { label: "OTP", type: "text" }
       },
       async authorize(credentials) {
         if (!credentials?.phone || !credentials?.otp) {
@@ -70,8 +72,8 @@ export const authOptions: NextAuthOptions = {
           where: {
             phone: credentials.phone,
             otp: credentials.otp,
-            expiresAt: { gt: new Date() },
-          },
+            expiresAt: { gt: new Date() }
+          }
         });
 
         if (!otpVerification) {
@@ -80,11 +82,11 @@ export const authOptions: NextAuthOptions = {
 
         // Delete the OTP after use
         await prisma.otpVerification.delete({
-          where: { id: otpVerification.id },
+          where: { id: otpVerification.id }
         });
 
         let user = await prisma.user.findUnique({
-          where: { phone: credentials.phone },
+          where: { phone: credentials.phone }
         });
 
         if (!user) {
@@ -92,8 +94,8 @@ export const authOptions: NextAuthOptions = {
           user = await prisma.user.create({
             data: {
               phone: credentials.phone,
-              phoneVerified: new Date(),
-            },
+              phoneVerified: new Date()
+            }
           });
         }
 
@@ -101,10 +103,10 @@ export const authOptions: NextAuthOptions = {
           id: user.id,
           email: user.email,
           name: user.name,
-          image: user.image,
+          image: user.image
         };
-      },
-    }),
+      }
+    })
   ],
   callbacks: {
     async jwt({ token, user }) {
@@ -124,7 +126,7 @@ export const authOptions: NextAuthOptions = {
                   }
                 }
               }
-            },
+            }
           });
 
           token.roles = userRoles.map((ur) => ur.role.name);
@@ -146,6 +148,6 @@ export const authOptions: NextAuthOptions = {
         session.user.permissions = (token.permissions as string[]) || [];
       }
       return session;
-    },
-  },
+    }
+  }
 };

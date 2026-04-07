@@ -1,5 +1,6 @@
-import { AuthCard, EmailVerificationForm } from "@/components/auth";
 import { Suspense } from "react";
+
+import { AuthCard, EmailVerificationForm } from "@/components/auth";
 
 export default function VerifyEmailPage() {
   return (

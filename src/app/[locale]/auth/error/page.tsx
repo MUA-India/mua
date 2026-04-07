@@ -1,9 +1,17 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle
+} from "@/components/ui/card";
 
 export default function AuthErrorPage() {
   const searchParams = useSearchParams();
@@ -22,12 +30,16 @@ export default function AuthErrorPage() {
     <div className="container flex h-screen w-screen flex-col items-center justify-center">
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle className="text-destructive text-2xl font-bold">Authentication Error</CardTitle>
+          <CardTitle className="text-2xl font-bold text-destructive">
+            Authentication Error
+          </CardTitle>
           <CardDescription>We encountered a problem while signing you in.</CardDescription>
         </CardHeader>
         <CardContent>
           <p className="text-sm text-muted-foreground">{errorMessage}</p>
-          {error && <p className="mt-2 text-xs font-mono text-muted-foreground">Error code: {error}</p>}
+          {error && (
+            <p className="mt-2 font-mono text-xs text-muted-foreground">Error code: {error}</p>
+          )}
         </CardContent>
         <CardFooter className="flex justify-between">
           <Button asChild variant="outline">

@@ -10,7 +10,7 @@ export const env = createEnv({
     GOOGLE_CLIENT_SECRET: z.string().min(1),
     NEXTAUTH_SECRET: z.string().min(1),
     NEXTAUTH_URL: z.string().url(),
-    RESEND_API_KEY: z.string().min(1),
+    RESEND_API_KEY: z.string().min(1)
   },
   client: {
     NEXT_PUBLIC_SITE_URL: z.string().url(),

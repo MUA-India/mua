@@ -2,6 +2,7 @@
 
 import { hash } from "bcrypt";
 import { z } from "zod";
+
 import { prisma } from "@/lib/prisma";
 import { resend } from "@/lib/resend";
 
@@ -9,14 +10,14 @@ const signupSchema = z.object({
   email: z.string().email(),
   password: z.string().min(8),
   name: z.string().min(2),
-  role: z.enum(["USER", "ARTIST"]).default("USER"),
+  role: z.enum(["USER", "ARTIST"]).default("USER")
 });
 
 export async function signup(data: z.infer<typeof signupSchema>) {
   const validatedData = signupSchema.parse(data);
 
   const existingUser = await prisma.user.findUnique({
-    where: { email: validatedData.email },
+    where: { email: validatedData.email }
   });
 
   if (existingUser) {
@@ -31,20 +32,20 @@ export async function signup(data: z.infer<typeof signupSchema>) {
       data: {
         email: validatedData.email,
         password: hashedPassword,
-        name: validatedData.name,
-      },
+        name: validatedData.name
+      }
     });
 
     const role = await tx.role.findUnique({
-      where: { name: validatedData.role },
+      where: { name: validatedData.role }
     });
 
     if (role) {
       await tx.userRole.create({
         data: {
           userId: newUser.id,
-          roleId: role.id,
-        },
+          roleId: role.id
+        }
       });
     }
   });
@@ -57,8 +58,8 @@ export async function signup(data: z.infer<typeof signupSchema>) {
     data: {
       phone: validatedData.email, // Using phone field to store email for OTP verification
       otp,
-      expiresAt,
-    },
+      expiresAt
+    }
   });
 
   // Send verification email
@@ -69,7 +70,7 @@ export async function signup(data: z.infer<typeof signupSchema>) {
       subject: "Verify your email - MUA Platform",
       html: `<p>Welcome to MUA Platform, ${validatedData.name}!</p>
              <p>Your verification code is: <strong>${otp}</strong></p>
-             <p>This code will expire in 10 minutes.</p>`,
+             <p>This code will expire in 10 minutes.</p>`
     });
   } catch (error) {
     console.error("Failed to send verification email:", error);
@@ -79,7 +80,7 @@ export async function signup(data: z.infer<typeof signupSchema>) {
 }
 
 const sendOtpSchema = z.object({
-  phone: z.string().min(10),
+  phone: z.string().min(10)
 });
 
 export async function sendOtp(data: z.infer<typeof sendOtpSchema>) {
@@ -93,8 +94,8 @@ export async function sendOtp(data: z.infer<typeof sendOtpSchema>) {
     data: {
       phone,
       otp,
-      expiresAt,
-    },
+      expiresAt
+    }
   });
 
   // TODO: Send OTP via SMS service (e.g., Twilio, AWS SNS)
@@ -105,7 +106,7 @@ export async function sendOtp(data: z.infer<typeof sendOtpSchema>) {
 
 const verifyEmailOtpSchema = z.object({
   email: z.string().email(),
-  otp: z.string().length(6),
+  otp: z.string().length(6)
 });
 
 export async function verifyEmailOtp(data: z.infer<typeof verifyEmailOtpSchema>) {
@@ -115,8 +116,8 @@ export async function verifyEmailOtp(data: z.infer<typeof verifyEmailOtpSchema>)
     where: {
       phone: email,
       otp,
-      expiresAt: { gt: new Date() },
-    },
+      expiresAt: { gt: new Date() }
+    }
   });
 
   if (!verification) {
@@ -126,12 +127,12 @@ export async function verifyEmailOtp(data: z.infer<typeof verifyEmailOtpSchema>)
   // Update user email verification status
   await prisma.user.update({
     where: { email },
-    data: { emailVerified: new Date() },
+    data: { emailVerified: new Date() }
   });
 
   // Delete the verification record
   await prisma.otpVerification.delete({
-    where: { id: verification.id },
+    where: { id: verification.id }
   });
 
   return { success: true };

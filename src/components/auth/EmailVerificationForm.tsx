@@ -1,11 +1,12 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter, useSearchParams } from "next/navigation";
+
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { toast } from "sonner";
-import { verifyEmailOtp } from "@/actions/auth";
+import { z } from "zod";
+
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -13,12 +14,13 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
+  FormMessage
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { verifyEmailOtp } from "@/actions/auth";
 
 const verifyEmailSchema = z.object({
-  otp: z.string().length(6, "OTP must be 6 digits"),
+  otp: z.string().length(6, "OTP must be 6 digits")
 });
 
 export function EmailVerificationForm() {
@@ -28,7 +30,7 @@ export function EmailVerificationForm() {
 
   const form = useForm<z.infer<typeof verifyEmailSchema>>({
     resolver: zodResolver(verifyEmailSchema),
-    defaultValues: { otp: "" },
+    defaultValues: { otp: "" }
   });
 
   async function onSubmit(values: z.infer<typeof verifyEmailSchema>) {
@@ -40,7 +42,7 @@ export function EmailVerificationForm() {
     try {
       const result = await verifyEmailOtp({
         email,
-        otp: values.otp,
+        otp: values.otp
       });
 
       if (result.success) {

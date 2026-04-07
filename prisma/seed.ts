@@ -1,5 +1,5 @@
-import { PrismaClient } from "@prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
+import { PrismaClient } from "@prisma/client";
 import { Pool } from "pg";
 
 const connectionString = process.env.DATABASE_URL;
@@ -14,14 +14,14 @@ async function main() {
     { name: "BOOK_ARTIST", description: "Can book an artist" },
     { name: "MANAGE_SERVICES", description: "Can manage services" },
     { name: "MANAGE_BOOKINGS", description: "Can manage bookings" },
-    { name: "ADMIN_ACCESS", description: "Full admin access" },
+    { name: "ADMIN_ACCESS", description: "Full admin access" }
   ];
 
   for (const p of permissions) {
     await prisma.permission.upsert({
       where: { name: p.name },
       update: {},
-      create: p,
+      create: p
     });
   }
 
@@ -30,18 +30,24 @@ async function main() {
     {
       name: "USER",
       description: "Regular user",
-      permissions: ["VIEW_ARTISTS", "BOOK_ARTIST"],
+      permissions: ["VIEW_ARTISTS", "BOOK_ARTIST"]
     },
     {
       name: "ARTIST",
       description: "Professional makeup artist",
-      permissions: ["VIEW_ARTISTS", "MANAGE_SERVICES", "MANAGE_BOOKINGS"],
+      permissions: ["VIEW_ARTISTS", "MANAGE_SERVICES", "MANAGE_BOOKINGS"]
     },
     {
       name: "ADMIN",
       description: "Platform administrator",
-      permissions: ["VIEW_ARTISTS", "BOOK_ARTIST", "MANAGE_SERVICES", "MANAGE_BOOKINGS", "ADMIN_ACCESS"],
-    },
+      permissions: [
+        "VIEW_ARTISTS",
+        "BOOK_ARTIST",
+        "MANAGE_SERVICES",
+        "MANAGE_BOOKINGS",
+        "ADMIN_ACCESS"
+      ]
+    }
   ];
 
   for (const r of roles) {
@@ -50,8 +56,8 @@ async function main() {
       update: {},
       create: {
         name: r.name,
-        description: r.description,
-      },
+        description: r.description
+      }
     });
 
     for (const pName of r.permissions) {
@@ -61,14 +67,14 @@ async function main() {
           where: {
             roleId_permissionId: {
               roleId: role.id,
-              permissionId: permission.id,
-            },
+              permissionId: permission.id
+            }
           },
           update: {},
           create: {
             roleId: role.id,
-            permissionId: permission.id,
-          },
+            permissionId: permission.id
+          }
         });
       }
     }

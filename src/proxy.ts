@@ -1,6 +1,8 @@
+import { NextRequest, NextResponse } from "next/server";
+
 import { getToken } from "next-auth/jwt";
 import createMiddleware from "next-intl/middleware";
-import { NextRequest, NextResponse } from "next/server";
+
 import { routing } from "@/i18n/routing";
 
 const intlMiddleware = createMiddleware(routing);
@@ -13,9 +15,8 @@ export default async function proxy(req: NextRequest) {
 
   // 2. Auth & RBAC Logic
   // Check if the path is protected
-  const isProtected = pathname.includes("/admin") || 
-                      pathname.includes("/artist") || 
-                      pathname.includes("/profile");
+  const isProtected =
+    pathname.includes("/admin") || pathname.includes("/artist") || pathname.includes("/profile");
 
   if (isProtected) {
     const token = await getToken({ req });

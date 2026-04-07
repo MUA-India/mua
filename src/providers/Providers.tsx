@@ -1,8 +1,7 @@
 "use client";
 
-import { type AbstractIntlMessages } from "next-intl";
-
 import { SessionProvider } from "next-auth/react";
+import { type AbstractIntlMessages } from "next-intl";
 
 import { IntlProvider, QueryProvider, ThemeProvider } from "@/providers";
 

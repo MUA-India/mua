@@ -1,5 +1,5 @@
-import { prisma } from "@/lib/prisma";
 import { signAccessToken, signRefreshToken, verifyToken } from "@/lib/jwt";
+import { prisma } from "@/lib/prisma";
 
 export async function refreshAccessToken(refreshToken: string) {
   try {
@@ -7,7 +7,7 @@ export async function refreshAccessToken(refreshToken: string) {
     const userId = payload.sub as string;
 
     const dbToken = await prisma.refreshToken.findUnique({
-      where: { token: refreshToken, userId },
+      where: { token: refreshToken, userId }
     });
 
     if (!dbToken || dbToken.expiresAt < new Date()) {
@@ -29,8 +29,8 @@ export async function createSession(userId: string) {
     data: {
       token: refreshToken,
       userId,
-      expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days
-    },
+      expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000) // 30 days
+    }
   });
 
   return { accessToken, refreshToken };

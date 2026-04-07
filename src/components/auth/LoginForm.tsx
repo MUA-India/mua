@@ -1,11 +1,13 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { toast } from "sonner";
+import { z } from "zod";
+
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -13,14 +15,15 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
+  FormMessage
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+
 import { GoogleButton } from "./GoogleButton";
 
 const loginSchema = z.object({
   email: z.string().email(),
-  password: z.string().min(1, "Password is required"),
+  password: z.string().min(1, "Password is required")
 });
 
 export function LoginForm() {
@@ -29,8 +32,8 @@ export function LoginForm() {
     resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
-      password: "",
-    },
+      password: ""
+    }
   });
 
   async function onSubmit(values: z.infer<typeof loginSchema>) {
@@ -38,7 +41,7 @@ export function LoginForm() {
       const result = await signIn("email-password", {
         email: values.email,
         password: values.password,
-        redirect: false,
+        redirect: false
       });
 
       if (result?.error) {

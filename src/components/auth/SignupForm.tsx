@@ -1,11 +1,13 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter, useSearchParams } from "next/navigation";
+
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { toast } from "sonner";
-import { signup } from "@/actions/auth";
+import { z } from "zod";
+
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -13,17 +15,18 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
+  FormMessage
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { signup } from "@/actions/auth";
+
 import { GoogleButton } from "./GoogleButton";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui";
 
 const signupSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Invalid email address"),
   password: z.string().min(8, "Password must be at least 8 characters"),
-  role: z.enum(["USER", "ARTIST"]),
+  role: z.enum(["USER", "ARTIST"])
 });
 
 export function SignupForm() {
@@ -37,8 +40,8 @@ export function SignupForm() {
       name: "",
       email: "",
       password: "",
-      role: defaultRole,
-    },
+      role: defaultRole
+    }
   });
 
   async function onSubmit(values: z.infer<typeof signupSchema>) {
