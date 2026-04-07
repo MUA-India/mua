@@ -6,3 +6,4 @@ export * from "./TanStackIcon";
 export * from "./TypeScriptIcon";
 export * from "./ZodIcon";
 export * from "./ZustandIcon";
+export * from "./GoogleIcon";

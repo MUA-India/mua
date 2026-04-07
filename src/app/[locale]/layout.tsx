@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { Plus_Jakarta_Sans, Playfair_Display } from "next/font/google";
+import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
 import { notFound } from "next/navigation";
 
 import { GoogleAnalytics } from "@next/third-parties/google";
@@ -61,15 +61,10 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className="dark" suppressHydrationWarning>
-      <head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html lang={locale} className="light" suppressHydrationWarning>
+      <head />
       <body
-        className={`${sans.variable} ${display.variable} flex min-h-screen w-full flex-col antialiased font-sans bg-black text-white`}
+        className={`${sans.variable} ${display.variable} flex min-h-screen w-full flex-col bg-background font-sans text-foreground antialiased`}
       >
         <Providers messages={messages} locale={locale}>
           <Header />
